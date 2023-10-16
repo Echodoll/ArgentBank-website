@@ -8,7 +8,7 @@ function User() {
             <header >
                 < Nav />
             </header>
-            <main>
+            <main className="main bg-dark">
                 < TitleUser />
                 < Account />
             </main>
