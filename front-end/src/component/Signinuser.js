@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { loginUser } from '../request/axiosRequest';
+import { useNavigate } from "react-router-dom";
 
 function SignInUser() {
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const handleSignIn = (e) => {
         e.preventDefault();
-        loginUser(email, password, rememberMe)
+        loginUser(email, password, rememberMe, navigate)
             .then((response) => {
                 console.log(response);
                 console.log("Authentification réussi ")
@@ -49,7 +50,7 @@ function SignInUser() {
                         onChange={(e) => setRememberMe(e.target.checked)} />
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
-                <button className="sign-in-button" type="submit">
+                <button className="sign-in-button" type="submit" onClick={handleSignIn}>
                     Sign In
                 </button>
             </form>
