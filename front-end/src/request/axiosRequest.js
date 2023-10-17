@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const loginUser = async (email, password, rememberMe, navigate) => {
 
     try {
@@ -10,7 +9,6 @@ export const loginUser = async (email, password, rememberMe, navigate) => {
                 password: password,
             }
         );
-
         if (response.status === 200) {
             const token = response.data.body.token;
             if (rememberMe) {
