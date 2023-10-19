@@ -13,6 +13,7 @@ function SignInUser() {
             .then((response) => {
                 console.log(response);
                 console.log("Authentification réussi ")
+                navigate("/user")
             })
             .catch((error) => {
                 console.error(error);
@@ -50,7 +51,7 @@ function SignInUser() {
                         onChange={(e) => setRememberMe(e.target.checked)} />
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
-                <button className="sign-in-button" type="submit" onClick={handleSignIn}>
+                <button className="sign-in-button" type="submit" onSubmit={handleSignIn}>
                     Sign In
                 </button>
             </form>
