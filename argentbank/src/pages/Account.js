@@ -1,7 +1,14 @@
+import Footer from "../component/Footer"
+import Nav from "../component/Nav"
+
 function Account() {
     return (
         <div>
-            <p>Account</p>
+            <Nav />
+            <main>
+
+            </main>
+            <Footer />
         </div>
     )
 

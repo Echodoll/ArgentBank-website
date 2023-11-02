@@ -1,7 +1,21 @@
+import Banner from "../component/Banner"
+import Feature from "../component/Feature"
+import Footer from "../component/Footer"
+import Nav from "../component/Nav"
+
 function Homepage() {
     return (
         <div>
-            <p>Homepage</p>
+            <Nav />
+            <main>
+                <section>
+                    <Banner />
+                </section>
+                <section>
+                    <Feature />
+                </section>
+            </main>
+            <Footer />
         </div>
     )
 

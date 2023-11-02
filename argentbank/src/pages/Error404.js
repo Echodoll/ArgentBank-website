@@ -1,7 +1,14 @@
+import Footer from "../component/Footer"
+import Nav from "../component/Nav"
+
 function Error404() {
     return (
         <div>
-            <p>Error404</p>
+            <Nav />
+            <main>
+
+            </main>
+            <Footer />
         </div>
     )
 }
