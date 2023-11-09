@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import "../designs/css/main.css"
-import Logo from "../designs/img/argentBankLogo.png"
+import Logo from "../designs/img/argentBankLogo.webp"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
@@ -9,9 +9,9 @@ import { fetchUser } from "../actions/user.action";
 import { useEffect } from "react";
 
 function Nav() {
-    const tokenLocalStorage = localStorage.getItem('token');
-    const tokenSessionStorage = sessionStorage.getItem('token');
-    const token = tokenLocalStorage || tokenSessionStorage;
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    const tokenFromRedux = useSelector((state) => state.userReducer.token);
+    const token = tokenFromLocalStorage || tokenFromRedux
     const userProfile = useSelector((state) => state.userReducer.userProfile);
     const navigate = useNavigate();
     const dispatch = useDispatch();

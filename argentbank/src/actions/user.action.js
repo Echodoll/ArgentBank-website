@@ -7,16 +7,16 @@ export const USER_PROFILE = "USER_PROFILE";
 export const UPDATE_USER = "UPDATE_USER";
 
 // Action succés de connexion 
-export function LoginSuccess() {
-    return {
-        type: LOGIN_SUCCESS
-    };
-};
+export const LoginSuccess = (token) => ({
+    type: 'LOGIN_SUCCESS',
+    payload: { token },
+});
+
 // stockage de l'erreur + login fail
 
 export const LoginFail = (error) => ({
     type: LOGIN_FAIL,
-    payload: error,
+    payload: { error },
 });
 // Gére l'action de logout
 export const logout = () => {
@@ -28,18 +28,11 @@ export const logout = () => {
 };
 // requête récupération du profil utilisateur 
 
-export const fetchUser = () => {
+export const fetchUser = (token) => {
     return async (dispatch) => {
-        let token = localStorage.getItem("token");
-
         if (!token) {
-            token = sessionStorage.getItem("token");
+            return
         }
-
-        if (!token) {
-            return;
-        }
-
         try {
             const response = await axios.post(
                 "http://localhost:3001/api/v1/user/profile",
@@ -64,13 +57,9 @@ export const fetchUser = () => {
     };
 };
 
-export const updateUser = (userName) => {
+export const updateUser = (userName, token) => {
     return async (dispatch) => {
-        let token = localStorage.getItem("token");
-
-        if (!token) {
-            token = sessionStorage.getItem("token");
-        }
+        console.log('Updating user:', userName, 'with token:', token);
 
         if (!token) {
             return;
@@ -86,10 +75,11 @@ export const updateUser = (userName) => {
                     },
                 }
             );
+
             if (response.status === 200) {
                 dispatch({
                     type: UPDATE_USER,
-                    payload: userName,
+                    payload: { userName, token },
                 });
             }
         } catch (error) {

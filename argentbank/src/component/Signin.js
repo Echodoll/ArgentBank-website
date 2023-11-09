@@ -30,17 +30,16 @@ function SignInUser() {
                 const token = response.data.body.token;
                 if (remember) {
                     localStorage.setItem("token", token)
-                } else {
-                    sessionStorage.setItem('token', token)
                 }
+                dispatch(LoginSuccess(token));
                 console.log('Authentification réussie');
                 navigate('/user-account');
-                dispatch(LoginSuccess());
             } else {
                 localStorage.removeItem('token');
                 sessionStorage.removeItem('token');
                 console.log('Échec d\'authentification');
                 setError("Échec d'authentification. Veuillez vérifier vos informations.");
+                dispatch(LoginFail("Erreur d'authentification"));
                 dispatch(LoginFail("Erreur d'authentification"));
             }
         } catch (error) {

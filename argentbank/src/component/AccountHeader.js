@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../actions/user.action';
 import Edit from './AccountEditName';
+
 const HeaderAccount = () => {
     const dispatch = useDispatch();
     const [isConnected, setIsConnected] = useState(false);
     const userProfile = useSelector((state) => state.userReducer.userProfile);
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    const tokenFromRedux = useSelector((state) => state.userReducer.token);
+    const token = tokenFromLocalStorage || tokenFromRedux
     useEffect(() => {
-        dispatch(fetchUser());
-    }, [dispatch]);
+        dispatch(fetchUser(token));
+    }, [dispatch, token]);
 
     return (
         <div className="header bg-dark">

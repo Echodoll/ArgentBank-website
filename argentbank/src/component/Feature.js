@@ -1,6 +1,6 @@
-import IconChat from "../designs/img/icon-chat.png"
-import IconMoney from "../designs/img/icon-money.png"
-import IconSecurity from "../designs/img/icon-security.png"
+import IconChat from "../designs/img/icon-chat.webp"
+import IconMoney from "../designs/img/icon-money.webp"
+import IconSecurity from "../designs/img/icon-security.webp"
 function Feature() {
     return (
         <section className="features">

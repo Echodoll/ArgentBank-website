@@ -5,9 +5,12 @@ import Footer from "../component/Footer"
 import Nav from "../component/Nav"
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 function Account() {
-    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    const tokenFromRedux = useSelector((state) => state.userReducer.token);
+    const token = tokenFromLocalStorage || tokenFromRedux;
     const navigate = useNavigate()
     useEffect(() => {
         if (!token) {

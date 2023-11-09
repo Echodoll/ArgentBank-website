@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../actions/user.action';
+import { useEffect } from 'react';
 
-const EditName = ({ setIsEditing }) => {
+const EditName = ({ setIsConnected }) => {
     const dispatch = useDispatch();
     const userProfile = useSelector((state) => state.userReducer.userProfile);
     const [newUserName, setNewUserName] = useState('');
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    const tokenFromRedux = useSelector((state) => state.userReducer.token);
+    const token = tokenFromLocalStorage || tokenFromRedux
+    useEffect(() => {
+        if (token) {
+            dispatch(updateUser(token));
+        }
+    }, [dispatch, token]);
     const UpdateUserName = async () => {
         if (newUserName) {
-            dispatch(updateUser(newUserName));
-            setIsEditing(false);
+            dispatch(updateUser(newUserName, token));
+            setIsConnected(false);
             setNewUserName('');
         }
     };
-
     const cancel = () => {
-        setIsEditing(false);
+        setIsConnected(false);
         setNewUserName('');
     };
     return (

@@ -3,6 +3,7 @@ import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, USER_PROFILE, UPDATE_USER } from '..
 const initialState = {
     loginError: null,
     userProfile: '',
+    token: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,13 +11,16 @@ const userReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
+                token: action.payload.token,
                 loginError: null
             };
 
         case LOGIN_FAIL:
             return {
                 ...state,
-                loginError: action.payload
+                token: null,
+                loginError: action.payload.error,
+
             };
 
         case LOGOUT:
@@ -31,10 +35,11 @@ const userReducer = (state = initialState, action) => {
             };
 
         case UPDATE_USER:
-            const newProfile = { ...state.userProfile, userName: action.payload };
-            return {
+            const { userName, token } = action.payload;
+            const newProfile = { ...state.userProfile, userName }; return {
                 ...state,
                 userProfile: newProfile,
+                token,
             };
 
         default:
