@@ -1,4 +1,4 @@
-import AccountUser from "./AccountUser"
+import AccountUser from "./bankaccount"
 
 const AccountPage = () => {
   return (

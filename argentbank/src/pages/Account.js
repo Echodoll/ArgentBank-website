@@ -1,5 +1,4 @@
 import AccountPage from "../component/AccountPage"
-import AccountUser from "../component/AccountUser"
 import AccountHeader from "../component/AccountHeader"
 import Footer from "../component/Footer"
 import Nav from "../component/Nav"
@@ -22,10 +21,8 @@ function Account() {
             <div>
                 <Nav />
                 <main className="bg-dark">
-
                     <AccountHeader />
                     <AccountPage />
-                    <AccountUser />
                 </main>
                 <Footer />
             </div>

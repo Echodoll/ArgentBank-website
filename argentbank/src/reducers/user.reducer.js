@@ -27,6 +27,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 loginError: null,
                 userProfile: '',
+                token: null,
             }
         case USER_PROFILE:
             return {
